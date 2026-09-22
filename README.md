@@ -51,11 +51,15 @@ az vm list-vm-resize-options \
   --resource-group "<Lab-Resource-Group>" \
   --name "MyVM" \
   --output table
-Confirmed that Standard_B2s was listed and available for redeployment.5. Scale-Up Execution (Azure CLI)Executed vertical upscaling from Cloud Shell back to the original size:   Bashaz vm resize \
+Confirmed that Standard_B2s was listed and available for redeployment.
+![size-list-cli](size-list-cli.png)
+
+
+## 5. Scale-Up Execution (Azure CLI)Executed vertical upscaling from Cloud Shell back to the original size:   Bashaz vm resize \
   --resource-group "<Lab-Resource-Group>" \
   --name "MyVM" \
   --size "Standard_B2s"
-6. Final State Validation
+## 6. Final State Validation
 Navigated back to the Azure Portal Overview blade to validate successful execution:
 Current Size: Standard B2s (2 vcpus, 4 GiB memory)
 Status: Updating / Completed
