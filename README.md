@@ -63,7 +63,7 @@ az vm resize \
   --size "Standard_B2s"
 6. Final State Validation
 Navigated back to the Azure Portal Overview blade to validate successful execution:
-
+![change-to-B2s.png](change-to-B2s.png)
 Current Size: Standard B2s (2 vcpus, 4 GiB memory)
 
 Status: Running / Updated
