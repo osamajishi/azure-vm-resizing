@@ -51,12 +51,7 @@ Opened Azure Cloud Shell to query valid resize candidates available on the activ
 Confirmed that Standard_B2s was listed and available for redeployment.
 ![change-to-B2s.png](change-to-B2s.png)
 
-
-## 5. Scale-Up Execution (Azure CLI)Executed vertical upscaling from Cloud Shell back to the original size:
-
-
-
-## 6. Final State Validation
+## 5. Final State Validation
 Navigated back to the Azure Portal Overview blade to validate successful execution:
 ![size-validation.png](size-validation.png)
 Current Size: Standard B2s (2 vcpus, 4 GiB memory)
