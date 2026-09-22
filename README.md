@@ -49,7 +49,7 @@ Opened Azure Cloud Shell to query valid resize candidates available on the activ
 ```bash
 az vm list-vm-resize-options \ --resource-group "<Lab-Resource-Group>" \ --name "MyVM" \ --output table
 Confirmed that Standard_B2s was listed and available for redeployment.
-size-list-cli.png
+![size-list-cli](https://raw.githubusercontent.com/osamajishi/azure-vm-resizing/1985d9ac32d1daec1959537ae04c04ba194f5018/size-list-cli.png)
 
 
 ## 5. Scale-Up Execution (Azure CLI)Executed vertical upscaling from Cloud Shell back to the original size:   Bashaz vm resize \
