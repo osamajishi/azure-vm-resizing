@@ -8,42 +8,35 @@
 
 ---
 
-## 1. Deployed Infrastructure Verification
-Prior to executing the resizing procedures, all required supporting resources were verified in the `East US` region.
+## Lab Execution and Verification
 
-* **Virtual Machine:** `MyVM` (Windows Server 2016 Datacenter)
-* **Virtual Network:** `vnet-eastus-1` (`172.16.0.0/16`)
-* **Subnet:** `snet-eastus-1` (`172.16.0.0/24`)
-* **Network Interface:** `myvm669` (Private IP: `172.16.0.4`)
-* **Public IP:** `MyVM-ip` (`20.25.13.212`)
-* **Network Security Group:** `MyVM-nsg` (RDP Port 3389 inbound open)
-* **Storage Account:** `teststorage13`
+### 1. Deployed Infrastructure Verification
+Prior to executing the resizing procedures, all required supporting resources were verified in the `East US` region[cite: 1, 5]:
+* **Virtual Machine:** `MyVM` (Windows Server 2016 Datacenter)[cite: 1, 5]
+* **Virtual Network:** `vnet-eastus-1` (`172.16.0.0/16`)[cite: 1, 5]
+* **Subnet:** `snet-eastus-1` (`172.16.0.0/24`)[cite: 1]
+* **Network Interface:** `myvm669` (Private IP: `172.16.0.4`)[cite: 1, 5]
+* **Public IP:** `MyVM-ip` (`20.25.13.212`)[cite: 1, 5]
+* **Network Security Group:** `MyVM-nsg` (RDP Port 3389 inbound open)[cite: 1, 5]
+* **Storage Account:** `teststorage13`[cite: 1, 5]
 
-![Deployed Resources Overview](resources.png)
+![resources.png](resources.png)
 
----
+### 2. Initial Configuration Review
+Inspected the VM size configurations under **MyVM > Settings > Size** to verify the baseline hardware allocation and review available SKUs within the current cluster[cite: 2]:
+* **Initial VM SKU:** `Standard_B2s` (2 vCPUs, 4 GiB memory)[cite: 2]
 
-## 2. Initial Configuration Review
-Inspected the VM size configurations under **MyVM > Settings > Size** to verify the baseline hardware allocation and review available SKUs within the current cluster.
+![B2s-size.png](B2s-size.png)
 
-* **Initial VM SKU:** `Standard_B2s` (2 vCPUs, 4 GiB memory)
-
-![Initial VM Size Blade](B2s-size.png)
-
----
-
-## 3. Scale-Down Execution (Azure Portal)
+### 3. Scale-Down Execution (Azure Portal)
 Executed vertical downscaling via the Azure Portal:
+1. Selected the `Standard_B1s` SKU from the sizing blade[cite: 2, 3].
+2. Initiated the resize operation[cite: 2].
+3. Verified that the VM updated successfully to `Standard B1s` (1 vCPU, 1 GiB memory) in the **Overview** blade[cite: 3].
 
-1. Selected the `Standard_B1s` SKU from the sizing blade.
-2. Initiated the resize operation.
-3. Verified that the VM updated successfully to `Standard B1s` (1 vCPU, 1 GiB memory) in the **Overview** blade.
+![change-B1s-size.png](change-B1s-size.png)
 
-![VM Scaled Down to B1s](change-B1s-size.png)
-
----
-
-## 4. Hardware Availability Check (Azure CLI)
+### 4. Hardware Availability Check (Azure CLI)
 Opened Azure Cloud Shell to query valid resize candidates available on the active compute cluster:
 
 ```bash
@@ -51,21 +44,3 @@ az vm list-vm-resize-options \
   --resource-group "<Lab-Resource-Group>" \
   --name "MyVM" \
   --output table
-Confirmed that Standard_B2s was listed and available for redeployment.
-
-5. Scale-Up Execution (Azure CLI)
-Executed vertical upscaling from Cloud Shell back to the original size:
-
-Bash
-az vm resize \
-  --resource-group "<Lab-Resource-Group>" \
-  --name "MyVM" \
-  --size "Standard_B2s"
-6. Final State Validation
-Navigated back to the Azure Portal Overview blade to validate successful execution:
-![change-to-B2s.png](change-to-B2s.png)
-Current Size: Standard B2s (2 vcpus, 4 GiB memory)
-
-Status: Running / Updated
-
-Public IP: 20.25.13.212
