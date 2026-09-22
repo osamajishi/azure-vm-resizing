@@ -59,4 +59,4 @@ Current Size: Standard B2s (2 vcpus, 4 GiB memory)
 
 Status: Updating / Completed
 
-Public IP: 20.25.13.212
+
