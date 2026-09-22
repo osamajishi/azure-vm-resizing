@@ -45,19 +45,20 @@ Executed vertical downscaling via the Azure Portal:
 
 ## 4. Hardware Availability Check (Azure CLI)
 Opened Azure Cloud Shell to query valid resize candidates available on the active compute cluster:
+![size-list-cli.png](size-list-cli.png)
 
-```bash
-az vm list-vm-resize-options \ --resource-group "<Lab-Resource-Group>" \ --name "MyVM" \ --output table
+
 Confirmed that Standard_B2s was listed and available for redeployment.
-![size-list-cli](https://raw.githubusercontent.com/osamajishi/azure-vm-resizing/1985d9ac32d1daec1959537ae04c04ba194f5018/size-list-cli.png)
+![change-to-B2s.png](change-to-B2s.png)
 
 
-## 5. Scale-Up Execution (Azure CLI)Executed vertical upscaling from Cloud Shell back to the original size:   Bashaz vm resize \
-  --resource-group "<Lab-Resource-Group>" \ --name "MyVM" \ --size "Standard_B2s"
+## 5. Scale-Up Execution (Azure CLI)Executed vertical upscaling from Cloud Shell back to the original size:
+
 
 
 ## 6. Final State Validation
 Navigated back to the Azure Portal Overview blade to validate successful execution:
+![size-validation.png](size-validation.png)
 Current Size: Standard B2s (2 vcpus, 4 GiB memory)
 Status: Updating / Completed
 Public IP: 20.25.13.212
